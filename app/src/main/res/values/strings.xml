@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Taboo Game</string>
+    <string name="made_by">Made by: Luka Perišić</string>
+    <string name="play">Play</string>
+    <string name="add_game">Add game</string>
+    <string name="exit">Exit</string>
+    <string name="add_another_word">Add another word</string>
+    <string name="save">Save</string>
+    <string name="word_to_guess">Word to guess</string>
+    <string name="game_title">Game title</string>
+</resources>

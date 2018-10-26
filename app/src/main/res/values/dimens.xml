@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--margins-->
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_default">16dp</dimen>
+    <dimen name="margin_large">32dp</dimen>
+
+    <!--padding-->
+    <dimen name="padding_default">16dp</dimen>
+    <dimen name="padding_large">32dp</dimen>
+
+    <!--corner radius-->
+    <dimen name="corner_radius_default">10dp</dimen>
+
+    <!--text sizes-->
+    <dimen name="primary_text_size">16sp</dimen>
+    <dimen name="padding_small">8dp</dimen>
+
+</resources>
