@@ -14,7 +14,7 @@ import perisic.luka.taboogame.base.BaseFragment;
 import perisic.luka.taboogame.data.local.model.GameModel;
 import perisic.luka.taboogame.ui.game.PlayViewModel;
 
-public class PlayFragment extends BaseFragment implements Observer<GameModel> {
+public class PlayFragment extends BaseFragment implements Observer<GameModel>,WordViewPagerAdapter.OnAnswerClick {
 
     public static final String BUNDLE_KEY = PlayFragment.class.getSimpleName() + "bundle_key";
 
@@ -38,9 +38,7 @@ public class PlayFragment extends BaseFragment implements Observer<GameModel> {
     protected void setupViewModel() {
         TabooGame.getAppComponent()
                 .inject(this);
-        if (id != -1) {
-            viewModel.getGame(id).observe(this, this);
-        }
+
     }
 
     @Override
@@ -52,7 +50,9 @@ public class PlayFragment extends BaseFragment implements Observer<GameModel> {
 
     @Override
     protected void observeData() {
-
+        if (id != -1) {
+            viewModel.getGame(id).observe(this, this);
+        }
     }
 
     @Override
@@ -63,7 +63,13 @@ public class PlayFragment extends BaseFragment implements Observer<GameModel> {
     @Override
     public void onChanged(@Nullable GameModel gameModel) {
         if(gameModel != null){
-            adapter.addData(gameModel.getGameWords());
+            adapter = new WordViewPagerAdapter(getFragmentManager(), gameModel.getGameWords(), this);
+            viewPager.setAdapter(adapter);
         }
+    }
+
+    @Override
+    public void onAnswer(boolean isCorrect) {
+
     }
 }

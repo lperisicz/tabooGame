@@ -12,11 +12,12 @@ import perisic.luka.taboogame.data.local.model.WordModel;
 
 public class WordViewPagerAdapter extends FragmentStatePagerAdapter {
 
-    private List<WordModel> dataList = new ArrayList<>();
+    private List<WordModel> dataList;
     private OnAnswerClick listener;
 
-    public WordViewPagerAdapter(FragmentManager fm, OnAnswerClick listener) {
+    public WordViewPagerAdapter(FragmentManager fm, List<WordModel> dataList, OnAnswerClick listener) {
         super(fm);
+        this.dataList = dataList;
         this.listener = listener;
     }
 
@@ -34,8 +35,6 @@ public class WordViewPagerAdapter extends FragmentStatePagerAdapter {
     public void addData(List<WordModel> data) {
         this.dataList.addAll(data);
     }
-
-
 
     public interface OnAnswerClick{
         void onAnswer(boolean isCorrect);

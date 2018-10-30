@@ -62,6 +62,7 @@ public class GameListFragment extends BaseFragment implements Observer<List<Game
 
     @Override
     public void onItemClick(int id) {
-        //TODO
+        viewModel.setInGame(true);
+        viewModel.setGameId(id);
     }
 }

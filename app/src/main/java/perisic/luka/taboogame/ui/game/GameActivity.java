@@ -37,10 +37,18 @@ public class GameActivity extends BaseActivity implements Observer<Boolean> {
     public void onChanged(@Nullable Boolean inGame) {
         if(inGame!= null){
             if(inGame){
-                inflateFragment(R.id.fragment_container, PlayFragment.newInstance(1));
+                if(viewModel.getGameId() != 0){
+                    inflateFragment(R.id.fragment_container, PlayFragment.newInstance(viewModel.getGameId()));
+                }
             }else{
                 inflateFragment(R.id.fragment_container, new GameListFragment());
             }
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }

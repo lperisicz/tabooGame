@@ -16,5 +16,6 @@
     <!--text sizes-->
     <dimen name="primary_text_size">16sp</dimen>
     <dimen name="padding_small">8dp</dimen>
+    <dimen name="large_text_size">20dp</dimen>
 
 </resources>

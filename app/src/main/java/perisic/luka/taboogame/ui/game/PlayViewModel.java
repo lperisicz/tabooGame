@@ -17,6 +17,7 @@ public class PlayViewModel extends ViewModel {
 
     private GameRepository repository;
     private MutableLiveData<Boolean> inGame = new MutableLiveData<>();
+    private int gameId;
 
     @Inject
     public PlayViewModel(GameRepository repository) {
@@ -33,6 +34,10 @@ public class PlayViewModel extends ViewModel {
         return inGame;
     }
 
+    public LiveData<GameModel> getGame(int id) {
+        return repository.getGameById(id);
+    }
+
     //endregion
 
     //region SETTERS
@@ -41,10 +46,13 @@ public class PlayViewModel extends ViewModel {
         this.inGame.postValue(inGame);
     }
 
-    public LiveData<GameModel> getGame(int id) {
-        return repository.getGameById(id);
+    public void setGameId(int gameId) {
+        this.gameId = gameId;
     }
 
+    public int getGameId() {
+        return this.gameId;
+    }
 
     //endregion
 }

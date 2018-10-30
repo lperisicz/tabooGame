@@ -14,6 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:text="Primjer taboo rijeci"
-        android:textAlignment="center"/>
+        android:textAlignment="center"
+        android:textAppearance="@style/main_text_style"/>
 
 </LinearLayout>
