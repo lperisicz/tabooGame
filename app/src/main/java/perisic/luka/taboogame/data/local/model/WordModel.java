@@ -4,12 +4,14 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity(tableName = "wordData")
-public class WordModel {
+public class WordModel implements Parcelable {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
@@ -50,4 +52,35 @@ public class WordModel {
     public void setId(int id) {
         this.id = id;
     }
+
+
+        @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.id);
+        dest.writeString(this.word);
+        dest.writeStringList(this.tabooWords);
+    }
+
+    protected WordModel(Parcel in) {
+        this.id = in.readInt();
+        this.word = in.readString();
+        this.tabooWords = in.createStringArrayList();
+    }
+
+    public static final Parcelable.Creator<WordModel> CREATOR = new Parcelable.Creator<WordModel>() {
+        @Override
+        public WordModel createFromParcel(Parcel source) {
+            return new WordModel(source);
+        }
+
+        @Override
+        public WordModel[] newArray(int size) {
+            return new WordModel[size];
+        }
+    };
 }

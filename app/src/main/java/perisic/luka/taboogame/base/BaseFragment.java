@@ -8,7 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class BaseFragment extends Fragment {
+import butterknife.ButterKnife;
+
+public abstract class BaseFragment extends Fragment {
 
 
     @Nullable
@@ -19,8 +21,15 @@ public class BaseFragment extends Fragment {
         setupViewModel();
         setupUi();
         observeData();
-        fetchData();
         return view;
 
     }
+
+    protected abstract void setupViewModel();
+
+    protected abstract void setupUi();
+
+    protected abstract void observeData();
+
+    protected abstract int setLayoutResource();
 }

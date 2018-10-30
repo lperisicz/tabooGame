@@ -7,12 +7,12 @@ import perisic.luka.taboogame.R;
 import perisic.luka.taboogame.TabooGame;
 import perisic.luka.taboogame.base.BaseActivity;
 import perisic.luka.taboogame.ui.add.AddGameActivity;
-import perisic.luka.taboogame.ui.play.PlayActivity;
+import perisic.luka.taboogame.ui.game.GameActivity;
 
 public class MainActivity extends BaseActivity {
 
     @OnClick(R.id.play_image_view)
-    public void onPlayClick(){startActivity(new Intent(this, PlayActivity.class));}
+    public void onPlayClick(){startActivity(new Intent(this, GameActivity.class));}
 
     @OnClick(R.id.add_game_image_view)
     public void onAddGameClick(){startActivity(new Intent(this, AddGameActivity.class));}
