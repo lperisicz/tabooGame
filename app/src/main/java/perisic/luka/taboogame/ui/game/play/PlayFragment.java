@@ -1,9 +1,14 @@
 package perisic.luka.taboogame.ui.game.play;
 
+import android.annotation.SuppressLint;
 import android.arch.lifecycle.Observer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import javax.inject.Inject;
 
@@ -20,6 +25,16 @@ public class PlayFragment extends BaseFragment implements Observer<GameModel>,Wo
 
     @BindView(R.id.word_view_pager)
     ViewPager viewPager;
+    @BindView(R.id.timeRemainingText)
+    TextView timeRemainingText;
+    @BindView(R.id.first_frame)
+    FrameLayout firstFrame;
+    @BindView(R.id.second_frame)
+    FrameLayout secondFrame;
+    @BindView(R.id.player1_score)
+    TextView player1Score;
+    @BindView(R.id.player2_score)
+    TextView player2Score;
 
     @Inject
     PlayViewModel viewModel;
@@ -41,6 +56,7 @@ public class PlayFragment extends BaseFragment implements Observer<GameModel>,Wo
 
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void setupUi() {
         if (getArguments() != null) {
@@ -52,6 +68,43 @@ public class PlayFragment extends BaseFragment implements Observer<GameModel>,Wo
     protected void observeData() {
         if (id != -1) {
             viewModel.getGame(id).observe(this, this);
+            viewModel.getFirstScore().observe(this, new Observer<Integer>() {
+                @Override
+                public void onChanged(@Nullable Integer integer) {
+                    player1Score.setText(String.valueOf(integer));
+                }
+            });
+            viewModel.getSecondScore().observe(this, new Observer<Integer>() {
+                @Override
+                public void onChanged(@Nullable Integer integer) {
+                    player2Score.setText(String.valueOf(integer));
+                }
+            });
+            viewModel.getIsFirstTurn().observe(this, new Observer<Boolean>() {
+                @Override
+                public void onChanged(@Nullable Boolean aBoolean) {
+                    if(aBoolean != null){
+                        if(aBoolean){
+                            firstFrame.setVisibility(View.VISIBLE);
+                            secondFrame.setVisibility(View.GONE);
+                        }else{
+                            secondFrame.setVisibility(View.VISIBLE);
+                            firstFrame.setVisibility(View.GONE);
+                        }
+                    }
+                }
+            });
+            viewModel.getTimeRemaining().observe(this, new Observer<Long>() {
+                @Override
+                public void onChanged(@Nullable Long aLong) {
+                    if (aLong != null) {
+                        long time = aLong/1000L;
+                        timeRemainingText.setText(String.valueOf(time));
+                    }
+
+                }
+            });
+            viewModel.startTimer();
         }
     }
 
@@ -70,6 +123,9 @@ public class PlayFragment extends BaseFragment implements Observer<GameModel>,Wo
 
     @Override
     public void onAnswer(boolean isCorrect) {
-
+        viewModel.setAnswer(isCorrect);
+        viewPager.setCurrentItem(
+                viewPager.getCurrentItem() + 1
+        );
     }
 }

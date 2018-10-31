@@ -4,10 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import perisic.luka.taboogame.data.local.model.GameModel;
 import perisic.luka.taboogame.data.local.model.WordModel;
 
 public class WordViewPagerAdapter extends FragmentStatePagerAdapter {
@@ -24,16 +22,12 @@ public class WordViewPagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(int position) {
 
-        return WordFragment.newInstance(dataList.get(position));
+        return WordFragment.newInstance(dataList.get(position), listener);
     }
 
     @Override
     public int getCount() {
         return dataList.size();
-    }
-
-    public void addData(List<WordModel> data) {
-        this.dataList.addAll(data);
     }
 
     public interface OnAnswerClick{

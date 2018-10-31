@@ -22,17 +22,23 @@ public class WordFragment extends BaseFragment {
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
     @OnClick(R.id.button_wrong)
-    public void onWrong(){}
+    public void onWrong(){
+            listener.onAnswer(false);
+    }
     @OnClick(R.id.button_correct)
-    public void onCorrect(){}
+    public void onCorrect(){
+            listener.onAnswer(true);
+    }
 
     private WordModel wordModel;
     private TabooAdapter adapter;
+    private WordViewPagerAdapter.OnAnswerClick listener;
 
-    public static WordFragment newInstance(WordModel wordModel) {
+    public static WordFragment newInstance(WordModel wordModel, WordViewPagerAdapter.OnAnswerClick listener) {
         Bundle args = new Bundle();
         args.putParcelable(BUNDLE_KEY, wordModel);
         WordFragment fragment = new WordFragment();
+        fragment.listener = listener;
         fragment.setArguments(args);
         return fragment;
     }

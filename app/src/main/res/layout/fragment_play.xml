@@ -8,25 +8,27 @@
     android:padding="@dimen/padding_default">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/timeRemainingText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/padding_default"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="0:58" />
+        tools:text="58"
+        android:textSize="30sp"
+        android:textColor="@android:color/holo_red_light"/>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/word_view_pager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="@dimen/margin_default"
         app:layout_constraintBottom_toTopOf="@+id/cardView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        app:layout_constraintTop_toBottomOf="@+id/timeRemainingText">
 
     </android.support.v4.view.ViewPager>
 
@@ -43,7 +45,20 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/padding_default">
 
+            <FrameLayout
+                android:id="@+id/first_frame"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/button_shape"
+                app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
+                app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
+                app:layout_constraintStart_toStartOf="@+id/linearLayout2"
+                app:layout_constraintTop_toTopOf="@+id/linearLayout2">
+
+            </FrameLayout>
+
             <LinearLayout
+                android:id="@+id/linearLayout2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -67,6 +82,18 @@
                     tools:text="10" />
 
             </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/second_frame"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/button_shape"
+                app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+                app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+                app:layout_constraintStart_toStartOf="@+id/linearLayout"
+                app:layout_constraintTop_toTopOf="@+id/linearLayout">
+
+            </FrameLayout>
 
             <LinearLayout
                 android:id="@+id/linearLayout"
